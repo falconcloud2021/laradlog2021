@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -67,10 +68,10 @@ class PageController extends Controller
 
 	public function aMonitor()
 	{
-		$userModel = new User();
-		$users = $userModel->getUserInfo();
+//		$userModel = new User();
+//		$users = $userModel->getUserInfo();
 		return view('admin/amonitor', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -83,7 +84,7 @@ class PageController extends Controller
 		$posts = $postModel->getPosts();
 		$categories = (new PostCategory())->getCategories();
 		return view('admin/aeditlist', [
-			'users' => $users,
+			'user' => session('user'),
 			'posts' => $posts, 
 			'categories' => $categories
 		]);
@@ -95,7 +96,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/addarticle', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -104,7 +105,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/aeditor', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -113,7 +114,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/arolls', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -122,7 +123,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/asheets', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -131,7 +132,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/acharts', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -140,7 +141,7 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/aletters', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
@@ -149,22 +150,39 @@ class PageController extends Controller
 		$userModel = new User();
 		$users = $userModel->getUserInfo();
 		return view('admin/abells', [
-			'users' => $users
+			'user' => session('user')
 		]);
 	}
 
-	// public function loginAdm(Request $request)
-	// {
-	// 	if ($request->isMethod('post')){
-	// 		$isAdmin = (new User()->login($request);
-
-	// 			if ($isAdmin){
-	// 				return redirect()->to('/amonitor')
-	// 			}
-	// 	}
+	public function aLogin(Request $request)
+	{
+		if ($request->isMethod('post')){
+			
+			$login = $request->post('login');
+			$password = $request->post('password');
+			
+			$user = (new User())->getAdmin($login, $password);
+			
+			if ($user)
+			{
+				session(['user' => $user]);
+				return redirect()->to('/amonitor');
+			}
+			
+			
+			return redirect()->to(url()->route('login'));
+		}
 		
-	// }
-
-
+		return view('admin.loginadm');
+	}
+	
+	public function aLogout()
+	{
+		if (session()->has('user'))
+		{
+			session()->remove('user');
+		}
+		return redirect()->to(url()->route('login'));
+	}
 
 }

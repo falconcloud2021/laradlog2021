@@ -176,9 +176,7 @@
           <div class="avatar"><img src="/admin/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
          
           <div class="title">
-            @foreach($users as $user)
-            <h6>ФИО: <small>{{ $user->first_name }} {{ $user->last_name }}</small></h6>  
-            @endforeach      
+            <h6>ФИО: <small>{{ $user->first_name }} {{ $user->last_name }}</small></h6>
             <h6>Pоль: <small>Admin</small></h6>
             <h6>State: <small style="color:white; background: green;">Online</small></h6>
           </div>

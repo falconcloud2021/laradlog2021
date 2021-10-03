@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,7 +45,8 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form method="get" class="form-validate">
+                  <form method="post" action="{{ url()->route('login') }}" class="form-validate">
+                    @csrf
                     <div class="form-group">
                       <input id="login-username" type="text" name="login" required data-msg="Please enter your username" class="input-material">
                       <label for="login-username" class="label-material">Ваш ник</label>
@@ -56,7 +56,7 @@
                       <label for="login-password" class="label-material">Пароль</label>
                     </div>
                     
-                    <button id="login" href="/amonitor/loginadm" class="btn btn-primary">Войти</button>
+                    <button id="login" class="btn btn-primary">Войти</button>
 
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                   </form><a href="#" class="forgot-pass">Забыли пароль?</a><br><small>У вас еще нет зарегистрированного аккаунта? </small><a href="/registermng" class="signup">Создать аккаунт!</a>

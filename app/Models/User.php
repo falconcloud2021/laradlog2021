@@ -21,6 +21,15 @@ class User extends Model
             )
             ->get();
     }
+	
+	public function getAdmin($login, $password)
+	{
+		$user = DB::table('users')
+			->where('login', '=', $login)
+			->where('password', '=', $password)
+			->first();
+		return $user ?? false;
+    }
 
     // public function login(Request $request)
     // {
