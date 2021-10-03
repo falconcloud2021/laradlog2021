@@ -1,0 +1,99 @@
+[ posts ]
+- id
+- title
+- text_intro
+- text_full
+- image_intro
+- image_full
+- alt_intro
+- alt_full
+- meta_title
+- meta_desc
+- rating
+- hits
+- home
+- status
+- url
+- category_id
+- user_id
+- date_create
+- date_update
+
+[ post_categories ]
+- id
+- url
+- name
+
+[ post_tags ]
+- id
+- url
+- name
+
+[ post_tag_ids ]
+
+[ users ]
+- id
+- first_name
+- last_name
+- login
+- password
+- status
+- group_id
+- subscribe
+- date_create
+- date_update
+
+[ user_groups ]
+- id
+- name
+
+[ comments ]
+- id
+- title
+- comment
+- user_id
+- date_create
+- date_update
+
+[ newsletter ]
+- id
+- article_id
+
+[ products ]
+- id
+- title
+- price
+- text_intro
+- text_full
+- image_intro
+- image_full
+- alt_intro
+- alt_full
+- status
+- url
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+белкевич 17:30
